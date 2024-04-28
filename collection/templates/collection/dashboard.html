@@ -1,0 +1,29 @@
+
+{% extends "journal/navbar.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/superhero/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="">
+  <title>AudioBook App </title>
+</head>
+<body>
+  {% block content %}
+
+    <div class="container bg-white shadow-md mt-4 mb-4 p-5 form-layout" >
+      <h1 class="text-light" >
+        What have you listened to recently?!?
+      </h1> {{user}}
+      <hr>
+      <div>
+        
+      </div>
+      <a href="{% url 'user-logout' %}">Logout</a>
+    </div>
+
+  {% endblock %}
+</body>
+</html>
