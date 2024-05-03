@@ -90,3 +90,8 @@ span {
 .navbar-btn {
   border: 2px solid orangered;
 }
+
+.delete-container {
+  border: 3px solid orangered;
+
+}
