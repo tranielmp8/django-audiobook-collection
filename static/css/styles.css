@@ -1,0 +1,92 @@
+
+hr {
+  border: 3px solid orangered;
+}
+
+body {
+  font-family: "Source Code Pro", monospace;
+}
+
+.delete-account {
+  color: orangered;
+}
+
+.index-btn {
+  color: orangered;
+  border: 2px solid orangered;
+}
+
+span {
+  color: orangered;
+}
+
+.welcome {
+  border-bottom: 3px solid orangered;
+}
+
+.login-container {
+  margin: 5rem auto;
+  width: 700px;
+}
+
+.logout-btn {
+  font-size: 20px;
+  color: orangered;
+}
+
+.title {
+  color: orangered;
+}
+
+.nav-item {
+  margin-right: 1rem;
+}
+
+.nav-li {
+  margin-right: 2rem;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register, .login {
+  width: 720px;
+}
+
+.container {
+  
+  padding: 2rem;
+  background-color: black;
+  border-radius: 15px;
+}
+
+.form-label {
+  font-size: 18px;
+}
+
+.author {
+  font-style: italic;
+}
+
+.list-item {
+  background: #555;
+  color: #fff;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  border: solid orangered 3px;
+}
+
+.index-header {
+  width: 100%;
+}
+.index-text {
+  width: 70%;
+  margin: 10px auto;
+}
+
+.navbar-btn {
+  border: 2px solid orangered;
+}

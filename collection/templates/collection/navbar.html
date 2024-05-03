@@ -1,0 +1,59 @@
+
+
+{% load static %}
+
+
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width-device-width, initial-scale=1, maximum-scale=1"/>
+            <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/slate/bootstrap.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+            <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+        </head>
+
+        <body>
+          <nav class="navbar navbar-expand-lg navbar-light bg-light  p-3">
+            <a class="navbar-brand main-heading" href='{% url 'book-list' %}' >       
+              &nbsp; AudiobookCollections
+            </a> 
+        
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-mdb-toggle="collapse"
+              data-mdb-target="#navbarCenteredExample"
+              aria-controls="navbarCenteredExample"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+            <span class="navbar-toggler-icon"></span>
+            </button>
+              {% comment %} <span class="navbar-toggler-icon"></span> {% endcomment %}
+      
+            </button>
+              <div class="collapse navbar-collapse justify-content-center " id="navbarCenteredExample">
+               
+                <ul class="navbar-nav mb-2 mb-lg-0 ">     
+                  <li class="nav-item me-5">             
+                    <a class="btn btn-primary navbar-btn" type="button"  href="{% url 'create-audio-book' %}">Create AudioBook</a>      
+                  </li>
+                        
+                  <li class="nav-item ">             
+                    <a class="btn btn-primary navbar-btn" type="button"  href="{% url 'profile-management' %}">Profile Management</a>      
+                  </li>
+              
+                  {% comment %} <li class="nav-item">
+                    <a class="btn btn-primary navbar-btn" type="button"  href="">Login</a>
+                  </li>    {% endcomment %}
+                </ul>                              
+              </div> 
+
+        </nav>
+
+        {% block content %}
+
+        {% endblock %}
+    </html>

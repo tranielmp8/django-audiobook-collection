@@ -1,0 +1,36 @@
+{% extends 'collection/index.html' %}
+
+{% load crispy_forms_tags%}
+
+{% block content %}
+      <div class="wrapper" >
+      <div class="container register m-4 d-flex flex-column justify-content-center">
+        <h1 class="text-center" >Register</h1>
+
+        <h3 class="text-center" >Create your account</h3>
+
+        <br><br>
+
+    <form action="" method="POST" autocomplete="off">
+      {% csrf_token %}
+
+      <div class="mx-auto">
+        <div class="text-slate" >
+          {{RegistrationForm|crispy}}
+        </div>
+        <br>
+        <button class="btn btn-secondary btn-md w-100 btn-block p-4 mb-4" type="submit">
+        <i class="fa fa-user-plus"></i>
+         Create Account</button>
+      </div>
+
+    </form>
+    <p class="text-center" >Already Registered?
+      <a class="" type="button"  href="{% url 'my-login'%}" >
+        Login 
+      </a>
+    </p>
+      </div>
+    </div>
+
+    {% endblock %}

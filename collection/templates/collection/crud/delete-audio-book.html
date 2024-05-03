@@ -1,0 +1,26 @@
+
+
+{% extends "collection/navbar.html" %}
+{% load static %}
+{% load crispy_forms_tags%}
+
+
+{% block content %}
+
+    <div class="container shadow-md mt-4 mb-4 p-5 " >
+      <h1 class="text-light" >Delete AudioBook?</h1>
+
+      <form action="" method="POST" autocomplete="off">
+        {% csrf_token %}
+  
+          <button class="btn btn-danger btn-md btn-block p-3 mb-4" type="submit">
+            <i class='fas fa-trash-alt' style='font-size:24px'></i>
+            Delete AudioBook
+          </button>
+      </form>
+
+      <a href="{% url 'book-list' %}">Return to AudioBook List</a>
+   
+    </div>
+
+  {% endblock %}

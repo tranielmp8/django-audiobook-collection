@@ -10,13 +10,16 @@
             <meta charset="utf-8" />
             <meta name="viewport" content="width-device-width, initial-scale=1, maximum-scale=1"/>
             <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/slate/bootstrap.min.css">
-            <link rel="stylesheet" type="text/css" href="">
-
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+            <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
         </head>
 
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center p-3">
-            <a class="navbar-brand main-heading">       
+            <a class="navbar-brand main-heading" 
+              href="{% url '' %}"
+            >       
               &nbsp; AudiobookCollections
             </a> 
         
@@ -40,7 +43,7 @@
         
                   <li class="nav-item">
               
-                    <a class="btn btn-primary navbar-btn" type="button"  href="">Register</a>
+                    <a class="btn btn-primary navbar-btn" type="button"  href="{% url 'register' %}">Register</a>
         
                   </li>
         
@@ -50,7 +53,7 @@
         
                   <li class="nav-item">
         
-                    <a class="btn btn-primary navbar-btn" type="button"  href="">Login</a>
+                    <a class="btn btn-primary navbar-btn" type="button"  href="{% url 'my-login' %}">Login</a>
         
                   </li>
         
@@ -65,21 +68,26 @@
         </nav>
 
         <body>
+        {% block content %}
       
             <br>
             <br>
       
-            <div class="text-center">
+            <div class="text-center  container">
       
-            <h2> Welcome to The AudioBook Collection App </h2>     
-            <hr>
-              <br>
+            <h2 class="welcome p-2 m-4" > Welcome to The AudioBook Collection App! </h2>     
+           
+            <h4 class="index-header text-center mb-4" >Create, Read, Update, and Delete from your very own audiobook collection.</h4>
+
+            <p class="index-text text-center" >Listening to Audiobooks is a hobby of mine. If it is yours also then you will love this app. This app allows you to create a list of audiobooks you have listened to. In this list you can upload an image for each audiobook plus write your own description of the book. There are a few other features you can attach to your books. </p>             
                     
-              <a class="btn btn-outline-primary" type="button"  href="">Register</a>
+              <a class="btn index-btn mt-4" type="button"  href="{% url 'register' %}">Register</a>
                 
             </div>
-  
-          </body>
+            
+
+            {% endblock %}
+          
 
         <script src=""></script>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"  crossorigin="anonymous"></script>
@@ -92,9 +100,6 @@
         crossorigin="anonymous">
 
         </script>
-
-
-
-
+      </body>
     </html>
 

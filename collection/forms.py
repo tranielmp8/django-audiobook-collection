@@ -24,3 +24,13 @@ class AudioBookForm(ModelForm):
     model = AudioBook
     fields = ['title', 'author', 'description', 'book_image', 'is_favorite', 'listen_date',]
     exclude = ['user',]
+    
+    
+# UPDATE USER INFO
+class UpdateUserForm(forms.ModelForm):
+  password = None
+  
+  class Meta:
+    model = User 
+    fields = ['username', 'email',]
+    exclude = ['password1', 'password2',]

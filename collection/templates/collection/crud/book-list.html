@@ -1,0 +1,80 @@
+
+{% extends "collection/navbar.html" %}
+
+{% load static %}
+
+  {% block content %}
+
+
+    <div class="container shadow-md mt-4 mb-4 p-5 form-layout" >
+      <h1 class="text-light" >
+        What have you listened to recently?!?
+      </h1> 
+      <div class="d-flex justify-content-evenly align-items-center" >
+        <h3 class="text-center">{{user|upper}}'s Audio Books!</h3>
+     
+        <a class="logout-btn" href="{% url 'user-logout' %}">Logout</a>
+      
+      </div>
+
+      <hr>
+ 
+      <div class="">
+        {% if not AllAudioBooks.exists %}
+            <div class="text-center" >
+              <a class="btn btn-secondary btn-md me-3 btn-block" href="{% url 'create-audio-book'%}">
+              <h1>
+              <i class="fa fa-plus" aria-hidden="true"></i>
+                Create Book
+              </h1>
+              </a>
+            </div>
+          {% endif %}
+  
+        <ul class="list" >
+        {% for audioBook in AllAudioBooks %}
+          {% if audioBook.user == request.user %}
+        
+              <li class="list-item p-3 row" >
+              <div class="p-2 me-2 col">
+                <h3 class="title" > {{ audioBook.title }} </h3>
+                <p class="author"> Author: {{audioBook.author}} </p>
+                
+                <img 
+                src="{{ audioBook.book_image.url }}"
+                style="width: 200px; height: 170px;"
+                />
+            
+              </div>
+
+              <div class="p-4 col d-flex flex-column justify-content-center">
+
+                {% if audioBook.is_favorite == True %}
+                    <p> ✨ Super Read ✨</p>
+                {% elif audioBook.is_favorite == False %}
+                    <p> <i class="fa fa-check" style="font-size:24px; color: orangered;"></i> Read</p>
+                {% endif %}
+                <p> {{ audioBook.description }} </p>
+                {% if audioBook.listen_date is not None %}
+                  <p> Read on date: {{audioBook.listen_date}} </p>
+                {% endif %}
+                <div>
+                  <a class="btn btn-secondary btn-md me-3 btn-block" href="{% url 'update-audio-book' audioBook.id %}">Update</a>
+              
+                  <a class="btn btn-secondary btn-md btn-block" href="{% url 'delete-audio-book' audioBook.id %}">Delete</a>
+                </div> 
+              </div>
+            </li>            
+          
+          
+
+          {% endif %}
+          
+        {% endfor %}
+        </ul>
+      </div>
+      
+      
+    </div>
+
+  {% endblock %}
