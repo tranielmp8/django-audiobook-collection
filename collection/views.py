@@ -1,4 +1,5 @@
 
+
 from django.shortcuts import render, redirect
 from . forms import CreateUserForm, LoginForm, AudioBookForm, UpdateUserForm 
 from . models import AudioBook
@@ -6,6 +7,9 @@ from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User 
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib import messages
 # Create your views here.
 
 def homepage(request):
@@ -19,7 +23,16 @@ def register(request):
     form = CreateUserForm(request.POST)
     
     if form.is_valid():
+      current_user = form.save(commit=False)
       form.save()
+      
+       # - 4 parameters, subject, message, from email, to email
+      send_mail(
+        "Welcome to the Profile App", 
+        "Congratulations on creating your account",
+        settings.DEFAULT_FROM_EMAIL,
+        [current_user.email]
+        )
   
       return redirect('my-login')
     
@@ -42,6 +55,8 @@ def my_login(request):
       
       if user is not None:
         auth.login(request, user)
+        messages.success(request, "User Logged in!")  
+        
         return redirect('book-list')
       
   context = {'LoginForm': form}  
@@ -51,7 +66,7 @@ def my_login(request):
 
 def user_logout(request):
   auth.logout(request)
-  return redirect('')
+  return redirect('/')
 
 
 # CRUD --------------------------
@@ -77,7 +92,6 @@ def create_audio_book(request):
       audioBook = form.save(commit=False) # post to database, but don't save it yet
       audioBook.user = request.user # assigning thought request to logged in user
       audioBook.save() # now save to database bc it is assigned to current user
-      # messages.success(request, "Thought Created!")
       return redirect('book-list')
     
   context = {"AudioBookForm": form}
@@ -98,9 +112,10 @@ def update_audio_book(request, pk):
     if form.is_valid():
       if 'book_image' in form.cleaned_data:
         if not form.cleaned_data['book_image']:
-           form.instance.book_image = 'books/audio-book.png'
+           form.instance.book_image = 'audio-book.png'
       
         form.save()
+        messages.success(request, "Audiobook Updated!")
         return redirect('book-list')
   else:
     form = AudioBookForm(instance=audioBook)
@@ -120,7 +135,7 @@ def delete_audio_book(request, pk):
   
   if request.method == 'POST':
     audioBook.delete()
-    
+    messages.success(request, "Audiobook Deleted")
     return redirect('book-list')
   
   return render(request, 'collection/crud/delete-audio-book.html') 
